@@ -21,25 +21,37 @@ if (!container || !codeContainer || !outputContainer)
 
 let code = `
 // script.js
-function binarySearch(arr = ["a", "b", "c", "d", "e"], val = "f")
+function binarySearch(array = ["a", "b", "c", "d", "e"], value = "f")
 {
-  let end = arr.length - 1;
+  // Try editing the code
+  let iterations = 1;
   let start = 0;
+  let end = array.length - 1;
+
 
   while (start <= end) { // while (true) won't loop infinitely
-    const mid = ~~((start + end) / 2);
+    // middle of array
+    const mid = Math.floor((start + end) / 2);
 
-    if (arr[mid] === val) {
+    if (array[mid] === value) {
+      // found value in array
       return mid;
     }
 
-    if (val < arr[mid]) {
+    if (value < array[mid]) {
       end = mid - 1;
+      // only to visualize:
+      start = start;
     } else {
       start = mid + 1;
+      // only to visualize:
+      end = end;
     }
+
+    iterations += 1; // iterations++
   }
 
+  // not found value in array
   return -1;
 }
 `.trim();
