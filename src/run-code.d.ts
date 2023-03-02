@@ -13,4 +13,7 @@ export declare const runCode: ({
   max,
   functionParameters,
   outputFormat,
-}: RunCodeParams) => Map<string, unknown[] | undefined> | string | undefined;
+}: RunCodeParams) =>
+  | Map<string, unknown[] | undefined | Error>
+  | string
+  | undefined;

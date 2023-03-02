@@ -4,7 +4,6 @@ import {
   keymap,
   lineNumbers,
   drawSelection,
-  highlightActiveLine,
   rectangularSelection,
 } from "@codemirror/view";
 import { EditorState } from "@codemirror/state";
@@ -114,6 +113,14 @@ const updateDom = async (code: string, maxValues: number) => {
           }
           tr.appendChild(td);
         });
+      } else if (values instanceof Error) {
+        const td = document.createElement("td");
+
+        td.innerHTML = `<p style="color:#ff79c6;">${
+          values.stack?.split("\n")[0] || values.message
+        }</p>`;
+
+        tr.appendChild(td);
       }
 
       if (key === "return") {
@@ -156,8 +163,6 @@ const state = EditorState.create({
     drawSelection(),
 
     rectangularSelection(),
-
-    highlightActiveLine(),
 
     keymap.of([
       ...defaultKeymap,
