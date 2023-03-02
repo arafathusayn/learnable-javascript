@@ -32,7 +32,9 @@ function binarySearch(array = ["a", "b", "c", "d", "e"], value = "f")
     // middle of array
     const mid = Math.floor((start + end) / 2);
 
-    if (array[mid] === value) {
+    const current = array[mid];
+
+    if (current === value) {
       // found value in array
       return mid;
     }
