@@ -97,7 +97,10 @@ const updateDom = async (code: string, maxValues: number) => {
           }
 
           try {
-            td.textContent = JSON.stringify(value);
+            td.textContent =
+              typeof value !== "undefined"
+                ? JSON.stringify(value)
+                : "undefined";
           } catch (error) {
             console.error(error);
             td.textContent = value as string;
