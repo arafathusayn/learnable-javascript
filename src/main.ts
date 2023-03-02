@@ -147,7 +147,7 @@ const run = async (code: string) => {
     code,
     "maxValues" in window && typeof window.maxValues === "number"
       ? window.maxValues
-      : 21,
+      : 51,
   );
 };
 
