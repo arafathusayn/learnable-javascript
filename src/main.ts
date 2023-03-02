@@ -28,7 +28,6 @@ function binarySearch(array = ["a", "b", "c", "d", "e"], value = "f")
   let start = 0;
   let end = array.length - 1;
 
-
   while (start <= end) { // while (true) won't loop infinitely
     // middle of array
     const mid = Math.floor((start + end) / 2);
