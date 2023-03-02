@@ -1,5 +1,12 @@
 import "./style.css";
-import { EditorView, keymap, lineNumbers } from "@codemirror/view";
+import {
+  EditorView,
+  keymap,
+  lineNumbers,
+  drawSelection,
+  highlightActiveLine,
+  rectangularSelection,
+} from "@codemirror/view";
 import { EditorState } from "@codemirror/state";
 import { javascript } from "@codemirror/lang-javascript";
 import {
@@ -146,12 +153,22 @@ const state = EditorState.create({
 
     history({ minDepth: 1000 }),
 
-    keymap.of(defaultKeymap),
-    keymap.of(standardKeymap),
-    keymap.of(historyKeymap),
-    keymap.of([indentWithTab]),
+    drawSelection(),
+
+    rectangularSelection(),
+
+    highlightActiveLine(),
+
+    keymap.of([
+      ...defaultKeymap,
+      ...standardKeymap,
+      ...historyKeymap,
+      indentWithTab,
+    ]),
 
     lineNumbers(),
+
+    EditorState.allowMultipleSelections.of(true),
 
     EditorView.updateListener.of((e) => {
       run(e.state.doc.toString());
